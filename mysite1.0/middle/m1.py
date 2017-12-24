@@ -1,8 +1,6 @@
 #AUTHOR:FAN
 from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import HttpResponse
-from simplejson import  *
-import json
 
 class Row1(MiddlewareMixin):
     def process_request(self,request):
