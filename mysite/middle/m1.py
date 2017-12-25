@@ -1,15 +1,19 @@
 #AUTHOR:FAN
 from django.utils.deprecation import MiddlewareMixin
+import time
 from django.shortcuts import HttpResponse
 
 class Row1(MiddlewareMixin):
     def process_request(self,request):
         http_data={}
-        f = open('file1.txt', 'w')
+        f = open('file1.txt', 'a')
+        f.write("TIME_STAMP:" + str(time.time())+'\n')
         for i in request.META.keys():
             http_data[i]=request.META[i]
             values=str(request.META[i])
             f.write(i+':'+values+'\n')
+        f.write("HTTP_BODY:" + bytes.decode(request.body))
+        f.write("\n\n")
         f.close()
         # http=request.META
         # http_json=json.dumps(http)
